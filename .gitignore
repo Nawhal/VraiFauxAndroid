@@ -30,3 +30,5 @@ proguard/
 
 # Android Studio captures folder
 captures/
+VraiFauxAndroid/.idea/gradle.xml
+VraiFauxAndroid/.idea/misc.xml
