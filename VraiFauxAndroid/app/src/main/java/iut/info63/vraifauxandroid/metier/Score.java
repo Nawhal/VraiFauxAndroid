@@ -5,13 +5,11 @@ package iut.info63.vraifauxandroid.metier;
  */
 public class Score {
 
-    private String playerName;
     private int rightAnswerNb;
     private int wrongAnswerNb;
 
-    public Score(String playerName)
+    public Score()
     {
-        this.playerName = playerName;
         rightAnswerNb = 0;
         wrongAnswerNb = 0;
     }
