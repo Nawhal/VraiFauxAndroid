@@ -9,4 +9,6 @@
     <string name="next_question">Question suivante</string>
     <string name="score">Score</string>
     <string name="author_application">Développée par :</string>
+    <string name="resultat_final">Voici ton résultat final :</string>
+    <string name="no_life">Vous n\'avez plus de vies...</string>
 </resources>

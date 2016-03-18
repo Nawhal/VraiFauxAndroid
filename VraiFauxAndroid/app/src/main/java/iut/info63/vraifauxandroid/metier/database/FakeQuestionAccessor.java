@@ -115,4 +115,7 @@ public class FakeQuestionAccessor implements IQuestionGetter {
     public void putAll(List<Question> questionList) {
         questions.addAll(questionList);
     }
+
+    @Override
+    public int count() { return questions.size(); }
 }

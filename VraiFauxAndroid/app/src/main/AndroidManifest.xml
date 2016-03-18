@@ -22,6 +22,7 @@
         <activity android:name=".activity.GameActivity" />
         <activity android:name=".activity.MultiplayerActivity" />
         <activity android:name=".activity.CreditsActivity" />
+        <activity android:name=".activity.ResultatActivity"></activity>
     </application>
 
 </manifest>

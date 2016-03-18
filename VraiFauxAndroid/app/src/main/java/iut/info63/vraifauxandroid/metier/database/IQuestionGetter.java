@@ -13,4 +13,5 @@ public interface IQuestionGetter {
     public List<Question> getAll();
     public void put(Question question);
     public void putAll(List<Question> questionList);
+    public int count();
 }

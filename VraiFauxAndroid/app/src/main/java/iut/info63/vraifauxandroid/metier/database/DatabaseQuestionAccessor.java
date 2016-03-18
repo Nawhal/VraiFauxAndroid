@@ -112,4 +112,23 @@ public class DatabaseQuestionAccessor implements IQuestionGetter {
         dataBaseHelper.openWritable();
         dataBaseHelper.getWritableDatabase().delete(FeedReaderContract.QuestionsFeedEntry.TABLE_NAME, null, null);
     }
+
+    public int count() {
+        dataBaseHelper.openReadable();
+
+        String[] projection = { "COUNT(*)" };
+
+        Cursor c = dataBaseHelper.getDatabase().query(
+                FeedReaderContract.QuestionsFeedEntry.TABLE_NAME,  // The table to query
+                projection,                               // The columns to return
+                null,
+                null,
+                null,
+                null,
+                null                                 // The sort order
+        );
+
+        c.moveToFirst();
+        return c.getInt(0);
+    }
 }

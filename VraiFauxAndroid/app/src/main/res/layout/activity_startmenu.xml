@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2b2b2b"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -12,12 +13,14 @@
     tools:context=".activity.StartMenuActivity">
 
     <TextView
+        android:textColor="#85BF25"
         android:text="@string/application_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="168dp"
+        android:textSize="15pt"
         android:textStyle="italic"
         android:id="@+id/textView" />
 
