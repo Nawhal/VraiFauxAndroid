@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:text="@string/resultat_final"
         android:id="@+id/tv_resultatFinal"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/tv_cmptGoodAnswer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="128dp" />
+        android:layout_marginBottom="107dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,15 +31,16 @@
         android:layout_height="wrap_content"
         android:text="Recommencer"
         android:id="@+id/b_restart"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="81dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/b_returnStartMenu"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Retourner au menu"
         android:id="@+id/b_returnStartMenu"
+        android:layout_marginBottom="71dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

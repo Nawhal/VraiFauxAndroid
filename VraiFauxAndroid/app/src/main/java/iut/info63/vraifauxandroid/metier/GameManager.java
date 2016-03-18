@@ -21,13 +21,14 @@ public class GameManager {
         DatabaseQuestionAccessor dqg = new DatabaseQuestionAccessor(dbh);
         FakeQuestionAccessor fqa = new FakeQuestionAccessor();
 
-        dqg.putAll(fqa.getAll());
-
-        Random random = new Random();
-        //question = dqg.getByIndex(0);
+        //faire avec DQG
         numberOfQuestion = fqa.count();
 
-        question = fqa.getByIndex(random.nextInt(numberOfQuestion));
+        dqg.putAll(fqa.getAll());
+        Random random = new Random();
+
+        //question = fqa.getByIndex(random.nextInt(numberOfQuestion));
+        question = dqg.getByIndex(random.nextInt(numberOfQuestion));
 
         //pas sa responsabilité
         //dbh.close();

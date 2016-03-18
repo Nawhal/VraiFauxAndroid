@@ -3,6 +3,7 @@ package iut.info63.vraifauxandroid.activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,16 @@ public class StartMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_startmenu);
+        switch (getResources().getConfiguration().orientation)
+        {
+            case Configuration.ORIENTATION_PORTRAIT:
+            case Configuration.ORIENTATION_UNDEFINED:
+                setContentView(R.layout.activity_startmenu);
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+                setContentView(R.layout.landscape_startmenu);
+                break;
+        }
 
         mButtonStart = (Button)findViewById(R.id.b_play);
         mButtonMultiplayer = (Button)findViewById(R.id.b_multiplayer);

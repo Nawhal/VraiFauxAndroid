@@ -49,7 +49,10 @@ public class DatabaseQuestionAccessor implements IQuestionGetter {
     public List<Question> getAll() {
         dataBaseHelper.openReadable();
 
-        String[] projection = { "*" };
+        String[] projection = {
+                FeedReaderContract.QuestionsFeedEntry.SECOND_COLUMN_NAME,
+                FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_NAME
+        };
 
         Cursor c = dataBaseHelper.getDatabase().query(
                 FeedReaderContract.QuestionsFeedEntry.TABLE_NAME,  // The table to query
