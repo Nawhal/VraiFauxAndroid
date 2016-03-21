@@ -12,25 +12,13 @@ import java.io.IOException;
  */
 public class DataBaseHelper extends SQLiteOpenHelper
 {
-    private static String DB_NAME = "VraiFauxDatabase.db";//the extension may be .sqlite or .db
+    private static String DB_NAME = "VraiFauxDatabase.db"; //the extension may be .sqlite or .db
     private SQLiteDatabase db;
         public SQLiteDatabase getDatabase() { return db; }
 
-    private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + FeedReaderContract.QuestionsFeedEntry.TABLE_NAME + " (" +
-                    FeedReaderContract.QuestionsFeedEntry.FIRST_COLUMN_NAME + FeedReaderContract.QuestionsFeedEntry.FIRST_COLUMN_TYPE + " CONSTRAINT pk_index PRIMARY KEY AUTOINCREMENT, " +
-                    FeedReaderContract.QuestionsFeedEntry.SECOND_COLUMN_NAME + FeedReaderContract.QuestionsFeedEntry.SECOND_COLUMN_TYPE + " CONSTRAINT nn_question NOT NULL, " +
-                    FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_NAME + FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_TYPE + " CONSTRAINT nn_reponse NOT NULL" +
-                    ");" +
-                    "CREATE TABLE " + FeedReaderContract.QuestionsFeedEntry.TABLE_NAME + " (" +
-                    FeedReaderContract.HighScoresFeedEntry.FIRST_COLUMN_NAME + FeedReaderContract.HighScoresFeedEntry.FIRST_COLUMN_TYPE + " CONSTRAINT pk_index PRIMARY KEY AUTOINCREMENT," +
-                    FeedReaderContract.HighScoresFeedEntry.SECOND_COLUMN_NAME + FeedReaderContract.HighScoresFeedEntry.SECOND_COLUMN_TYPE + " CONSTRAINT nn_name NOT NULL," +
-                    FeedReaderContract.HighScoresFeedEntry.THIRD_COLUMN_NAME + FeedReaderContract.HighScoresFeedEntry.THIRD_COLUMN_TYPE + " CONSTRAINT nn_score NOT NULL" +
-                    ")" ;
-
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FeedReaderContract.QuestionsFeedEntry.TABLE_NAME +
-                    "DROP TABLE " + FeedReaderContract.HighScoresFeedEntry.TABLE_NAME;
+                    "DROP TABLE IF EXISTS " + FeedReaderContract.HighScoresFeedEntry.TABLE_NAME;
 
     public DataBaseHelper(Context context) throws IOException
     {
@@ -55,10 +43,9 @@ public class DataBaseHelper extends SQLiteOpenHelper
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) { // Mettre les id des ressources des questions au lieu des strings directement.
-        db.execSQL(SQL_CREATE_ENTRIES);
-
-        //createEntries(db);
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(FeedReaderContract.QuestionsFeedEntry.SQL_CREATE_ENTRIES);
+        db.execSQL(FeedReaderContract.HighScoresFeedEntry.SQL_CREATE_ENTRIES);
     }
 
     @Override

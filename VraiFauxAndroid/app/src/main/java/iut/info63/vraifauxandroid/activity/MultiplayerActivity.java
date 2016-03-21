@@ -58,7 +58,7 @@ public class MultiplayerActivity extends AppCompatActivity {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-                Toast.makeText(MultiplayerActivity.this, "New Device = " + device.getName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MultiplayerActivity.this, "New Device = " + device.getName(), Toast.LENGTH_SHORT).show();
                 mLvDevice.setAdapter(mArrayAdapter);
             }
         }
@@ -72,16 +72,17 @@ public class MultiplayerActivity extends AppCompatActivity {
                 case Constants.MESSAGE_STATE_CHANGE:
                     switch (msg.arg1) {
                         case BluetoothService.STATE_CONNECTED:
-                            Log.d("TEST", "Connected to");
+                            Log.d("TEST", "State = Connected to");
                             Toast.makeText(activity, "STATE_CONNECTED", Toast.LENGTH_SHORT).show();
                             break;
                         case BluetoothService.STATE_CONNECTING:
-                            Log.d("TEST", "Connecting");
+                            Log.d("TEST", "State = Connecting");
                             Toast.makeText(activity, "STATE_CONNECTED", Toast.LENGTH_SHORT).show();
                             break;
                         case BluetoothService.STATE_LISTEN:
+                            Log.d("TEST", "State = Listening");
                         case BluetoothService.STATE_NONE:
-                            Log.d("TEST", "not connected");
+                            Log.d("TEST", "State = Not connected");
                             Toast.makeText(activity, "STATE_NONE ou STATE_LISTEN", Toast.LENGTH_SHORT).show();
                             break;
                     }
@@ -151,7 +152,7 @@ public class MultiplayerActivity extends AppCompatActivity {
         mArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new ArrayList<String>());
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
-                Toast.makeText(MultiplayerActivity.this, "Device = " + device.getName() + "\n" + device.getAddress(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MultiplayerActivity.this, "Device = " + device.getName() + "\n" + device.getAddress(), Toast.LENGTH_SHORT).show();
                 mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
             }
             Toast.makeText(MultiplayerActivity.this, "Appareil lié par Bluetooth", Toast.LENGTH_LONG).show();

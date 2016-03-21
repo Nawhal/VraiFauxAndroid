@@ -49,6 +49,7 @@ public class GameActivity extends AppCompatActivity {
 
         try {
             dbh = new DataBaseHelper(this);
+            //test(dbh);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -138,14 +139,12 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    /*private void test() throws IOException
+    private void test(DataBaseHelper dbh) throws IOException
     {
-        DataBaseHelper dbh = new DataBaseHelper(this);
-
         DatabaseQuestionAccessor dqg = new DatabaseQuestionAccessor(dbh);
+        FakeQuestionAccessor fqa = new FakeQuestionAccessor();
 
-        dqg.put();
-
-        dbh.close();
-    }*/
+        dqg.testDeleteAll();
+        dqg.putAll(fqa.getAll());
+    }
 }
