@@ -1,7 +1,10 @@
 package iut.info63.vraifauxandroid.metier;
 
+import android.view.View;
+
 import java.util.Random;
 
+import iut.info63.vraifauxandroid.R;
 import iut.info63.vraifauxandroid.metier.database.DataBaseHelper;
 import iut.info63.vraifauxandroid.metier.database.DatabaseQuestionAccessor;
 import iut.info63.vraifauxandroid.metier.database.FakeQuestionAccessor;
@@ -11,10 +14,26 @@ import iut.info63.vraifauxandroid.metier.database.FakeQuestionAccessor;
  */
 public class GameManager {
 
-    int numberOfQuestion;
+    int numberOfQuestion, compteurGoodAnswer = 0, compteurBadAnswer = 0;
     Question question;
 
     public GameManager() {
+    }
+
+    public int getCompteurGoodAnswer() {
+        return compteurGoodAnswer;
+    }
+
+    public int getCompteurBadAnswer() {
+        return compteurBadAnswer;
+    }
+
+    public void setCompteurGoodAnswer(int value) {
+        this.compteurGoodAnswer = value;
+    }
+
+    public void setCompteurBadAnswer(int value) {
+        this.compteurBadAnswer = value;
     }
 
     public Question randomQuestion(DataBaseHelper dbh) {
@@ -34,5 +53,15 @@ public class GameManager {
         //dbh.close();
 
         return question;
+    }
+
+    public boolean verifyAnswer(boolean answer) {
+        if(answer == question.getAnswer()) {
+            compteurGoodAnswer++;
+            return true;
+        }
+
+        compteurBadAnswer++;
+        return false;
     }
 }

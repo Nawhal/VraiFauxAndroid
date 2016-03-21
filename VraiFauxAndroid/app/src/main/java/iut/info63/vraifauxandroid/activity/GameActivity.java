@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
     GameManager mGameManager = new GameManager();
     Question question;
     DataBaseHelper dbh;
-    int compteurBadAnswer = 0, compteurGoodAnswer = 0;
+    //int compteurBadAnswer = 0, compteurGoodAnswer = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +61,9 @@ public class GameActivity extends AppCompatActivity {
                 mButtonTrue.setVisibility(View.INVISIBLE);
                 mButtonFalse.setVisibility(View.INVISIBLE);
 
-                verifyAnswer(true);
+                modificationAboutAnswer(true);
 
-                if(compteurBadAnswer < 3) {
+                if(mGameManager.getCompteurBadAnswer() < 3) {
                     mButtonNextQuestion.setVisibility(View.VISIBLE);
                 }
             }
@@ -75,9 +75,9 @@ public class GameActivity extends AppCompatActivity {
                 mButtonTrue.setVisibility(View.INVISIBLE);
                 mButtonFalse.setVisibility(View.INVISIBLE);
 
-                verifyAnswer(false);
+                modificationAboutAnswer(false);
 
-                if(compteurBadAnswer < 3) {
+                if(mGameManager.getCompteurBadAnswer() < 3) {
                     mButtonNextQuestion.setVisibility(View.VISIBLE);
                 }
             }
@@ -100,22 +100,19 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ResultatActivity.class);
-                intent.putExtra("goodanswer", compteurGoodAnswer);
+                intent.putExtra("goodanswer", mGameManager.getCompteurGoodAnswer());
                 startActivity(intent);
                 finish();
             }
         });
     }
-
-    private void verifyAnswer(boolean answer) {
-        if(answer == question.getAnswer()) {
+    private void modificationAboutAnswer(boolean answer) {
+        if(mGameManager.verifyAnswer(answer)) {
             mTvResult.setText("Bonne réponse");
-            compteurGoodAnswer++;
         } else {
             mTvResult.setText("Mauvaise réponse");
-            compteurBadAnswer++;
 
-            switch (compteurBadAnswer) {
+            switch (mGameManager.getCompteurBadAnswer()) {
                 case 1:
                     mIvHeart3.setImageResource(R.drawable.emptyheart);
                     break;
@@ -130,13 +127,14 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+
     private void displayQuestion() {
-        if(compteurBadAnswer < 3) {
+        if(mGameManager.getCompteurBadAnswer() < 3) {
             question = mGameManager.randomQuestion(dbh);
             Log.d(TAG, question.getQuestion());
             Log.d(TAG, String.valueOf(question.getAnswer()));
             mTvQuestion.setText(question.getQuestion());
-            compteurGoodAnswer++;
+            //compteurGoodAnswer++;
         }
     }
 

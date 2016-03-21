@@ -17,7 +17,7 @@
         android:text="@string/application_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="62dp"
         android:textSize="15pt"
         android:textStyle="italic"
         android:id="@+id/textView"
@@ -29,24 +29,28 @@
         android:layout_height="wrap_content"
         android:text="@string/play"
         android:id="@+id/b_play"
-        android:layout_marginTop="78dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/b_credits"
-        android:layout_alignStart="@+id/b_credits" />
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_marginBottom="97dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="@string/multijoueur"
         android:id="@+id/b_multiplayer"
-        android:layout_below="@+id/b_play"
+        android:layout_alignTop="@+id/b_play"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="@string/credits"
         android:id="@+id/b_credits"
-        android:layout_below="@+id/b_multiplayer"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/b_play"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
 </RelativeLayout>
