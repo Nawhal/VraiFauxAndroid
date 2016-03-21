@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:text="@string/play"
         android:id="@+id/b_play"
-        android:textColor="#FFFFFF"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/textView"
         android:layout_toStartOf="@+id/textView"
@@ -38,7 +37,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
         android:text="@string/multijoueur"
         android:id="@+id/b_multiplayer"
         android:layout_alignTop="@+id/b_play"
@@ -47,7 +45,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
         android:text="@string/credits"
         android:id="@+id/b_credits"
         android:layout_alignTop="@+id/b_play"
