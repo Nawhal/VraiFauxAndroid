@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class DataBaseHelper extends SQLiteOpenHelper
 {
-    private static String DB_NAME = "VraiFauxDatabase.db"; //the extension may be .sqlite or .db
+    private static String DB_NAME = "VraiFauxDatabase.db";
     private SQLiteDatabase db;
         public SQLiteDatabase getDatabase() { return db; }
 
