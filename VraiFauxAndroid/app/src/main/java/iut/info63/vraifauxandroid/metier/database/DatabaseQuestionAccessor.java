@@ -21,6 +21,12 @@ public class DatabaseQuestionAccessor implements IQuestionGetter {
     {
         this.dataBaseHelper = dataBaseHelper;
         biggestIndex = getBiggestIndex();
+
+        if (biggestIndex < 0)
+        {
+            FakeQuestionAccessor fqa = new FakeQuestionAccessor();
+            putAll(fqa.getAll());
+        }
     }
 
     @Override
