@@ -31,7 +31,6 @@
         android:layout_height="wrap_content"
         android:text="Recommencer"
         android:id="@+id/b_restart"
-        android:layout_marginBottom="10dp"
         android:layout_above="@+id/b_returnStartMenu"
         android:layout_centerHorizontal="true" />
 
@@ -40,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Retourner au menu"
         android:id="@+id/b_returnStartMenu"
-        android:layout_marginBottom="71dp"
+        android:layout_marginBottom="52dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

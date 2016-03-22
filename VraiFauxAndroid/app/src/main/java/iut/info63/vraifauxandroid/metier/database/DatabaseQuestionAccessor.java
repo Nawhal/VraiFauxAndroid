@@ -25,7 +25,6 @@ public class DatabaseQuestionAccessor implements IQuestionGetter {
         dataBaseHelper.openReadable();
 
         String[] projection = {
-                FeedReaderContract.QuestionsFeedEntry.FIRST_COLUMN_NAME,
                 FeedReaderContract.QuestionsFeedEntry.SECOND_COLUMN_NAME,
                 FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_NAME
         };

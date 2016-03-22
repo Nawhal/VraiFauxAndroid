@@ -1,9 +1,11 @@
 package iut.info63.vraifauxandroid.metier;
 
+import java.io.Serializable;
+
 /**
  * Created by Nawhal on 23/02/2016.
  */
-public class Question {
+public class Question implements Serializable{
 
     private String question;
     private boolean answer;

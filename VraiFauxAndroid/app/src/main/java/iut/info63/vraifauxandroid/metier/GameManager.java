@@ -12,7 +12,7 @@ import iut.info63.vraifauxandroid.metier.database.FakeQuestionAccessor;
 /**
  * Created by aupilleves on 18/03/16.
  */
-public class GameManager {
+public class GameManager extends IGameManager{
 
     int numberOfQuestion, compteurGoodAnswer = 0, compteurBadAnswer = 0;
     Question question;
@@ -50,7 +50,7 @@ public class GameManager {
         question = dqg.getByIndex(random.nextInt(numberOfQuestion));
 
         //pas sa responsabilité
-        //dbh.close();
+        dbh.close();
 
         return question;
     }

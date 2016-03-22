@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import iut.info63.vraifauxandroid.R;
 import iut.info63.vraifauxandroid.metier.GameManager;
+import iut.info63.vraifauxandroid.metier.IGameManager;
 import iut.info63.vraifauxandroid.metier.Question;
 import iut.info63.vraifauxandroid.metier.database.DataBaseHelper;
 import iut.info63.vraifauxandroid.metier.database.DatabaseQuestionAccessor;
@@ -20,21 +21,37 @@ import iut.info63.vraifauxandroid.metier.database.FakeQuestionAccessor;
 
 public class GameActivity extends AppCompatActivity {
 
-    private static final String TAG = GameActivity.class.getSimpleName();
-
-    ImageView mIvHeart1, mIvHeart2, mIvHeart3;
-    Button mButtonTrue, mButtonFalse, mButtonNextQuestion, mButtonScore;
+    private ImageView mIvHeart1, mIvHeart2, mIvHeart3;
+    private Button mButtonTrue, mButtonFalse, mButtonNextQuestion, mButtonScore;
     private TextView mTvQuestion, mTvResult;
 
-    GameManager mGameManager = new GameManager();
-    Question question;
-    DataBaseHelper dbh;
-    //int compteurBadAnswer = 0, compteurGoodAnswer = 0;
+    private IGameManager mGameManager;
+    private Question question;
+    private DataBaseHelper dbh;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("game", mGameManager);
+        outState.putSerializable("question", question);
+        if(mButtonNextQuestion.getVisibility() == View.VISIBLE) {
+            outState.putBoolean("repondu", true);
+            outState.putString("stringreponse", mTvResult.getText().toString());
+        } else {
+            outState.putBoolean("repondu", false);
+        }
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        try {
+            dbh = new DataBaseHelper(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         mButtonTrue = (Button)findViewById(R.id.b_true);
         mButtonFalse = (Button)findViewById(R.id.b_false);
@@ -47,13 +64,41 @@ public class GameActivity extends AppCompatActivity {
 
         mTvQuestion = (TextView)findViewById(R.id.tv_question);
 
-        try {
-            dbh = new DataBaseHelper(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        if(savedInstanceState != null) {
+            mGameManager = (IGameManager) savedInstanceState.getSerializable("game");
+            question = (Question) savedInstanceState.getSerializable("question");
 
-        displayQuestion();
+            mTvQuestion.setText(question.toString());
+            switch (mGameManager.getCompteurBadAnswer()) {
+                case 1:
+                    mIvHeart3.setImageResource(R.drawable.emptyheart);
+                    break;
+                case 2:
+                    mIvHeart3.setImageResource(R.drawable.emptyheart);
+                    mIvHeart2.setImageResource(R.drawable.emptyheart);
+                    break;
+                case 3:
+                    mIvHeart3.setImageResource(R.drawable.emptyheart);
+                    mIvHeart2.setImageResource(R.drawable.emptyheart);
+                    mIvHeart1.setImageResource(R.drawable.emptyheart);
+                    break;
+            }
+
+            if(savedInstanceState.getBoolean("repondu")) {
+                mButtonTrue.setVisibility(View.INVISIBLE);
+                mButtonFalse.setVisibility(View.INVISIBLE);
+                if(mGameManager.getCompteurBadAnswer() == 3) {
+                    mButtonScore.setVisibility(View.VISIBLE);
+                } else {
+                    mButtonNextQuestion.setVisibility(View.VISIBLE);
+                }
+                mTvResult.setText(savedInstanceState.getString("stringreponse"));
+            }
+        } else {
+            mGameManager = new GameManager();
+
+            displayQuestion();
+        }
 
         mButtonTrue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +151,8 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void modificationAboutAnswer(boolean answer) {
         if(mGameManager.verifyAnswer(answer)) {
             mTvResult.setText("Bonne réponse");
@@ -131,21 +178,12 @@ public class GameActivity extends AppCompatActivity {
     private void displayQuestion() {
         if(mGameManager.getCompteurBadAnswer() < 3) {
             question = mGameManager.randomQuestion(dbh);
-            Log.d(TAG, question.getQuestion());
-            Log.d(TAG, String.valueOf(question.getAnswer()));
             mTvQuestion.setText(question.getQuestion());
-            //compteurGoodAnswer++;
+            Log.d("TEST", question.getQuestion());
+            if(question.getAnswer() == true)
+                Log.d("TEST", "réponse = true");
+            if(question.getAnswer() == false)
+                Log.d("TEST", "réponse = false");
         }
     }
-
-    /*private void test() throws IOException
-    {
-        DataBaseHelper dbh = new DataBaseHelper(this);
-
-        DatabaseQuestionAccessor dqg = new DatabaseQuestionAccessor(dbh);
-
-        dqg.put();
-
-        dbh.close();
-    }*/
 }
