@@ -44,12 +44,6 @@ public class GameManager extends IGameManager{
 
         question = dqg.getByIndex(random.nextInt(numberOfQuestion));
 
-<<<<<<< HEAD
-        //pas sa responsabilité
-        dbh.close();
-
-=======
->>>>>>> 7473776466ace91f28443d4dc25c838f801e3d1b
         return question;
     }
 
