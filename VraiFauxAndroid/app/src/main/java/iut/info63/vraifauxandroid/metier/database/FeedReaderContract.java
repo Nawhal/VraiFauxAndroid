@@ -13,18 +13,34 @@ public final class FeedReaderContract {
         public static final String FIRST_COLUMN_NAME = "id";
         public static final String FIRST_COLUMN_TYPE = " INTEGER";
         public static final String SECOND_COLUMN_NAME = "Question";
-        public static final String SECOND_COLUMN_TYPE = " VARCHAR2(300)";
+        public static final String SECOND_COLUMN_TYPE = " TEXT";
         public static final String THIRD_COLUMN_NAME = "Answer";
-        public static final String THIRD_COLUMN_TYPE = " BOOLEAN";
+        public static final String THIRD_COLUMN_TYPE = " INTEGER";
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + FeedReaderContract.QuestionsFeedEntry.TABLE_NAME + " (" +
+                    FeedReaderContract.QuestionsFeedEntry.FIRST_COLUMN_NAME + FeedReaderContract.QuestionsFeedEntry.FIRST_COLUMN_TYPE +
+                            " CONSTRAINT pk_" + FeedReaderContract.QuestionsFeedEntry.FIRST_COLUMN_NAME + " PRIMARY KEY, " +
+                    FeedReaderContract.QuestionsFeedEntry.SECOND_COLUMN_NAME + FeedReaderContract.QuestionsFeedEntry.SECOND_COLUMN_TYPE +
+                            " CONSTRAINT nn_" + FeedReaderContract.QuestionsFeedEntry.SECOND_COLUMN_NAME + " NOT NULL, " +
+                    FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_NAME + FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_TYPE +
+                            " CONSTRAINT nn_" + FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_NAME + " NOT NULL" +
+                            " CONSTRAINT ch_" + FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_NAME +
+                            " CHECK(" + FeedReaderContract.QuestionsFeedEntry.THIRD_COLUMN_NAME + " IN(0, 1) );";
     }
 
     public static abstract class HighScoresFeedEntry implements BaseColumns {
         public static final String TABLE_NAME = "HighScores";
         public static final String FIRST_COLUMN_NAME = "id";
-        public static final String FIRST_COLUMN_TYPE = " NUMBER(4)";
+        public static final String FIRST_COLUMN_TYPE = " INTEGER";
         public static final String SECOND_COLUMN_NAME = "Name";
-        public static final String SECOND_COLUMN_TYPE = " VARCHAR2(100)";
+        public static final String SECOND_COLUMN_TYPE = " TEXT";
         public static final String THIRD_COLUMN_NAME = "Score";
-        public static final String THIRD_COLUMN_TYPE = " NUMBER(4,2)";
+        public static final String THIRD_COLUMN_TYPE = " INTEGER";
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + FeedReaderContract.HighScoresFeedEntry.TABLE_NAME + " (" +
+                        FeedReaderContract.HighScoresFeedEntry.FIRST_COLUMN_NAME + FeedReaderContract.HighScoresFeedEntry.FIRST_COLUMN_TYPE + " CONSTRAINT pk_index PRIMARY KEY," +
+                        FeedReaderContract.HighScoresFeedEntry.SECOND_COLUMN_NAME + FeedReaderContract.HighScoresFeedEntry.SECOND_COLUMN_TYPE + " CONSTRAINT nn_name NOT NULL," +
+                        FeedReaderContract.HighScoresFeedEntry.THIRD_COLUMN_NAME + FeedReaderContract.HighScoresFeedEntry.THIRD_COLUMN_TYPE + " CONSTRAINT nn_score NOT NULL" +
+                        ")" ;
     }
 }

@@ -68,7 +68,7 @@ public class BluetoothService {
      * Set the current state of the chat connection
      */
     private void setState(int state) {
-        Log.d("TEST", "setState() " + mState + " -> " + state);
+        Log.d("TEST", "setState() : " + mState + " -> " + state);
         mState = state;
 
         // Give the new state to the Handler so the UI Activity can update
@@ -87,24 +87,28 @@ public class BluetoothService {
      * session in listening (server) mode. Called by the Activity onResume()
      */
     public void start() {
-        Log.d("TEST", "start");
+        Log.d("TEST", "BluetoothService(90) start");
 
         // Cancel any thread attempting to make a connection
         if (mConnectThread != null) {
+            Log.d("TEST", "BluetoothService(94) cancel Thread");
             mConnectThread.cancel();
             mConnectThread = null;
         }
 
         // Cancel any thread currently running a connection
         if (mConnectedThread != null) {
+            Log.d("TEST", "BluetoothService(101) cancel Thread");
             mConnectedThread.cancel();
             mConnectedThread = null;
         }
 
         setState(STATE_LISTEN);
+        Log.d("TEST", "BluetoothService(107) Listen");
 
         // Start the thread to listen on a BluetoothServerSocket
         if (mAcceptThread == null) {
+            Log.d("TEST", "BluetoothService(111) Start listen thread");
             mAcceptThread = new AcceptThread(true);
             mAcceptThread.start();
         }
@@ -271,13 +275,14 @@ public class BluetoothService {
         }
 
         public void run() {
-            Log.d("TEST", "Socket Type: " + mSocketType + "BEGIN mAcceptThread" + this);
+            Log.d("TEST", "Socket Type: " + mSocketType + ", BEGIN mAcceptThread" + this);
             setName("AcceptThread" + mSocketType);
 
             BluetoothSocket socket = null;
 
             // Listen to the server socket if we're not connected
             while (mState != STATE_CONNECTED) {
+                Log.i("TEST", "run() : Waiting for a connexion");
                 try {
                     // This is a blocking call and will only return on a successful connection or an exception
                     socket = mmServerSocket.accept();
@@ -332,7 +337,7 @@ public class BluetoothService {
         private String mSocketType;
 
         public ConnectThread(BluetoothDevice device) {
-            Log.d("TEST", "ConnectThread create()");
+            Log.d("TEST", "BluetoothService : ConnectThread()");
             mmDevice = device;
             BluetoothSocket tmp = null;
             mSocketType = "Secure";
@@ -349,6 +354,7 @@ public class BluetoothService {
         }
 
         public void run() {
+            Log.d("TEST", "BluetoothService : run()");
             Log.d("TEST", "BEGIN mConnectThread SocketType:" + mSocketType);
             setName("ConnectThread" + mSocketType);
 
@@ -368,6 +374,8 @@ public class BluetoothService {
                     Log.d("TEST", "unable to close() " + mSocketType +
                             " socket during connection failure", e2);
                 }
+                Log.d("TEST", "BluetoothService(377) : IOException");
+                e.printStackTrace();
                 connectionFailed();
                 return;
             }
