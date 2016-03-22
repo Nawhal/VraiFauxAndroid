@@ -45,7 +45,11 @@ public class MultiplayerActivity extends AppCompatActivity {
     ListView mLvDevice;
     TextView mTvDevice;
     ArrayAdapter<String> mArrayAdapter;
+<<<<<<< HEAD
     Button mSearchDevice, mStopSearch,  mBtConnect;
+=======
+    Button mSearchDevice, mStopSearch, mBtConnect;
+>>>>>>> origin/master
     IntentFilter filter;
     String address;
     private BluetoothService mBluetoothService = null;
@@ -124,6 +128,7 @@ public class MultiplayerActivity extends AppCompatActivity {
         mLvDevice = (ListView) findViewById(R.id.lv_devices);
         mTvDevice = (TextView) findViewById(R.id.tv_devices);
         mStopSearch = (Button) findViewById(R.id.b_stop);
+        mBtConnect = (Button)findViewById(R.id.b_connect);
 
         
         if(ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -176,6 +181,10 @@ public class MultiplayerActivity extends AppCompatActivity {
                         String info = mLvDevice.getItemAtPosition(position).toString();
                         address = info.substring(info.length() - 17);
                         Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
                         mBtConnect.setVisibility(View.VISIBLE);
                     }
                 });
@@ -200,7 +209,7 @@ public class MultiplayerActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
-        Log.d("TEST", "setupChat()");
+        Log.d("TEST", "setupGame()");
 
         // Initialize the BluetoothChatService to perform bluetooth connections
         mBluetoothService = new BluetoothService(getApplicationContext(), mHandler);

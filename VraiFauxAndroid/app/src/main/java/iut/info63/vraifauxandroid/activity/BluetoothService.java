@@ -30,12 +30,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-/**
- * This class does all the work for setting up and managing Bluetooth
- * connections with other devices. It has a thread that listens for
- * incoming connections, a thread for connecting with a device, and a
- * thread for performing data transmissions when connected.
- */
 public class BluetoothService {
 
     private static final String NAME_SECURE = "VraiFauxSecure";
@@ -67,7 +61,7 @@ public class BluetoothService {
     /**
      * Set the current state of the chat connection
      */
-    private void setState(int state) {
+    private synchronized void setState(int state) {
         Log.d("TEST", "setState() : " + mState + " -> " + state);
         mState = state;
 
@@ -78,7 +72,7 @@ public class BluetoothService {
     /**
      * Return the current connection state.
      */
-    public int getState() {
+    public synchronized int getState() {
         return mState;
     }
 
@@ -86,7 +80,7 @@ public class BluetoothService {
      * Start the chat service. Specifically start AcceptThread to begin a
      * session in listening (server) mode. Called by the Activity onResume()
      */
-    public void start() {
+    public synchronized void start() {
         Log.d("TEST", "BluetoothService(90) start");
 
         // Cancel any thread attempting to make a connection
@@ -114,7 +108,7 @@ public class BluetoothService {
         }
     }
 
-    public void connect(BluetoothDevice device) {
+    public synchronized void connect(BluetoothDevice device) {
         Log.d("TEST", "connect to: " + device);
 
         // Cancel any thread attempting to make a connection
@@ -143,7 +137,7 @@ public class BluetoothService {
      * @param socket The BluetoothSocket on which the connection was made
      * @param device The BluetoothDevice that has been connected
      */
-    public void connected(BluetoothSocket socket, BluetoothDevice device, final String socketType) {
+    public synchronized void connected(BluetoothSocket socket, BluetoothDevice device, final String socketType) {
         Log.d("TEST", "connected, Socket Type:" + socketType);
 
         // Cancel the thread that completed the connection
@@ -181,7 +175,7 @@ public class BluetoothService {
     /**
      * Stop all threads
      */
-    public void stop() {
+    public synchronized void stop() {
         Log.d("TEST", "stop");
 
         if (mConnectThread != null) {

@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 import iut.info63.vraifauxandroid.metier.database.DataBaseHelper;
 
-/**
- * Created by Aurélien on 21/03/2016.
- */
 public abstract class IGameManager implements Serializable{
 
     public abstract int getCompteurGoodAnswer();
@@ -17,7 +14,11 @@ public abstract class IGameManager implements Serializable{
 
     public abstract void setCompteurBadAnswer(int value);
 
-    public abstract Question randomQuestion(DataBaseHelper dbh);
+    public abstract void randomQuestion(DataBaseHelper dbh);
+
+    public abstract String getQuestionCourante();
+
+    public abstract Boolean getReponseCourante();
 
     public abstract boolean verifyAnswer(boolean answer);
 

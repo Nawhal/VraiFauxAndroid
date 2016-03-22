@@ -1,8 +1,5 @@
 package iut.info63.vraifauxandroid.metier;
 
-/**
- * Created by Nawhal on 14/03/2016.
- */
 public class Highscore {
 
     private String name;

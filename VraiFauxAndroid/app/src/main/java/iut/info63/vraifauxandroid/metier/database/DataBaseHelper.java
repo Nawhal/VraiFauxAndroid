@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class DataBaseHelper extends SQLiteOpenHelper
 {
-    private static String DB_NAME = "VraiFauxDatabase.db"; //the extension may be .sqlite or .db
+    private static String DB_NAME = "VraiFauxDatabase.db";
     private SQLiteDatabase db;
         public SQLiteDatabase getDatabase() { return db; }
 
@@ -35,7 +35,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
     }
 
     @Override
-    public synchronized void close(){ // Pour que la BDD ne se ferme qu'une fois, on utilise synchronized
+    public synchronized void close(){
         if (db != null)
             db.close();
         super.close();

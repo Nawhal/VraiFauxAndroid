@@ -5,9 +5,6 @@ import java.util.Random;
 import iut.info63.vraifauxandroid.metier.database.DataBaseHelper;
 import iut.info63.vraifauxandroid.metier.database.DatabaseQuestionAccessor;
 
-/**
- * Created by aupilleves on 18/03/16.
- */
 public class GameManager extends IGameManager{
 
     int numberOfQuestion, compteurGoodAnswer = 0, compteurBadAnswer = 0;
@@ -32,15 +29,21 @@ public class GameManager extends IGameManager{
         this.compteurBadAnswer = value;
     }
 
-    public Question randomQuestion(DataBaseHelper dbh) {
+    public void randomQuestion(DataBaseHelper dbh) {
         DatabaseQuestionAccessor dqg = new DatabaseQuestionAccessor(dbh);
 
         numberOfQuestion = dqg.count();
         Random random = new Random();
 
         question = dqg.getByIndex(random.nextInt(numberOfQuestion));
+    }
 
-        return question;
+    public String getQuestionCourante() {
+        return question.getQuestion();
+    }
+
+    public Boolean getReponseCourante() {
+        return question.getAnswer();
     }
 
     public boolean verifyAnswer(boolean answer) {
