@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/lv_devices"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/b_stop" />
+        android:layout_below="@+id/b_stop"
+        android:layout_marginBottom="30px"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,4 +39,13 @@
         android:id="@+id/b_stop"
         android:layout_below="@+id/b_search"
         android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect"
+        android:id="@+id/b_connect"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

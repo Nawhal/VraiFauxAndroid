@@ -2,7 +2,6 @@ package iut.info63.vraifauxandroid.metier.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,9 +122,6 @@ public class DatabaseQuestionAccessor implements IQuestionGetter {
     }
 
     public int count() {
-        Log.d("COUCOU", "COUNT = " + getBiggestIndex());
-        for (Question q : getAll())
-            Log.d("LIST", q.toString());
         return biggestIndex;
     }
 

@@ -3,7 +3,6 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
-import android.util.Log;
 
 import java.io.IOException;
 

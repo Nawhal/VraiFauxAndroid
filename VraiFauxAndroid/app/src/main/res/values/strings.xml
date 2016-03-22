@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">VraiFauxAndroid</string>
     <string name="play">Jouer</string>
-    <string name="application_name">Vrai ou faux</string>
+    <string name="application_name1">Vrai</string>
+    <string name="application_name2">ou</string>
+    <string name="application_name3">Faux</string>
     <string name="multijoueur">Multijoueur</string>
     <string name="credits">Crédits</string>
     <string name="vrai">Vrai</string>

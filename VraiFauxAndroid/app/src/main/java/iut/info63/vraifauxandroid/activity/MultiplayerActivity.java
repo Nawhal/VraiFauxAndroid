@@ -45,7 +45,7 @@ public class MultiplayerActivity extends AppCompatActivity {
     ListView mLvDevice;
     TextView mTvDevice;
     ArrayAdapter<String> mArrayAdapter;
-    Button mSearchDevice, mStopSearch;
+    Button mSearchDevice, mStopSearch,  mBtConnect;
     IntentFilter filter;
     String address;
     private BluetoothService mBluetoothService = null;
@@ -125,15 +125,14 @@ public class MultiplayerActivity extends AppCompatActivity {
         mTvDevice = (TextView) findViewById(R.id.tv_devices);
         mStopSearch = (Button) findViewById(R.id.b_stop);
 
+        
         if(ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if(ActivityCompat.shouldShowRequestPermissionRationale(MultiplayerActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                Toast.makeText(MultiplayerActivity.this, "YOLOSAUCISSON", Toast.LENGTH_SHORT).show();
-            } else {
+            if(!ActivityCompat.shouldShowRequestPermissionRationale(MultiplayerActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
                 ActivityCompat.requestPermissions(MultiplayerActivity.this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             }
-        } else {
-            setupLogic();
         }
+
+        setupLogic();
     }
 
     private void setupLogic() {
@@ -177,17 +176,24 @@ public class MultiplayerActivity extends AppCompatActivity {
                         String info = mLvDevice.getItemAtPosition(position).toString();
                         address = info.substring(info.length() - 17);
                         Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
-
-                        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-                        mBluetoothService.connect(device);
+                        mBtConnect.setVisibility(View.VISIBLE);
                     }
                 });
+            }
+        });
+
+        mBtConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+                mBluetoothService.connect(device);
             }
         });
 
         mStopSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mBluetoothAdapter.isDiscovering())
                 unregisterReceiver(mReceiver);
             }
         });

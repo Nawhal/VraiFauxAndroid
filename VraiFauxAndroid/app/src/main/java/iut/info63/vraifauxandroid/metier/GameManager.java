@@ -1,13 +1,9 @@
 package iut.info63.vraifauxandroid.metier;
 
-import android.view.View;
-
 import java.util.Random;
 
-import iut.info63.vraifauxandroid.R;
 import iut.info63.vraifauxandroid.metier.database.DataBaseHelper;
 import iut.info63.vraifauxandroid.metier.database.DatabaseQuestionAccessor;
-import iut.info63.vraifauxandroid.metier.database.FakeQuestionAccessor;
 
 /**
  * Created by aupilleves on 18/03/16.

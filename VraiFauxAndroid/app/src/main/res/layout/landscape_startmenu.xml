@@ -13,26 +13,54 @@
     tools:context=".activity.StartMenuActivity">
 
     <TextView
-        android:textColor="#85BF25"
-        android:text="@string/application_name"
+        android:textColor="#d6d6d6"
+        android:text="@string/application_name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
         android:textSize="15pt"
         android:textStyle="italic"
-        android:id="@+id/textView"
+        android:id="@+id/titleTextView1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/application_name3"
+        android:id="@+id/titleTextView2"
+        android:layout_alignBottom="@+id/titleTextView1"
+        android:layout_toRightOf="@+id/b_multiplayer"
+        android:layout_toEndOf="@+id/b_multiplayer"
+        android:textSize="20pt"
+        android:textStyle="bold"
+        android:textColor="#ba0000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/application_name1"
+        android:id="@+id/titleTextView3"
+        android:layout_alignBottom="@+id/titleTextView1"
+        android:layout_toLeftOf="@+id/b_multiplayer"
+        android:layout_toStartOf="@+id/b_multiplayer"
+        android:textSize="20pt"
+        android:textStyle="bold"
+        android:textColor="#00ba27" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/play"
         android:id="@+id/b_play"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/textView"
-        android:layout_toStartOf="@+id/textView"
-        android:layout_marginBottom="97dp" />
+        android:layout_marginTop="85dp"
+        android:layout_below="@+id/titleTextView1"
+        android:layout_toLeftOf="@+id/b_multiplayer"
+        android:layout_toStartOf="@+id/b_multiplayer"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:textColor="#f2f2f2"
+        android:background="#0ba600" />
 
     <Button
         android:layout_width="wrap_content"
@@ -47,7 +75,10 @@
         android:layout_height="wrap_content"
         android:text="@string/credits"
         android:id="@+id/b_credits"
-        android:layout_alignTop="@+id/b_play"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_alignTop="@+id/b_multiplayer"
+        android:layout_toRightOf="@+id/b_multiplayer"
+        android:layout_toEndOf="@+id/b_multiplayer" />
+
 </RelativeLayout>
