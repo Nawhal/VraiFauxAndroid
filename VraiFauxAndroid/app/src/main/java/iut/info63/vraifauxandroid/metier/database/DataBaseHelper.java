@@ -36,7 +36,7 @@ public class DataBaseHelper extends SQLiteOpenHelper
     }
 
     @Override
-    public synchronized void close(){ // Pour que la BDD ne se ferme qu'une fois, on utilise synchronized
+    public synchronized void close(){
         if (db != null)
             db.close();
         super.close();
