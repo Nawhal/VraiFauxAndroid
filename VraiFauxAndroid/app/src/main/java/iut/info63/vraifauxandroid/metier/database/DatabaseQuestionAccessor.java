@@ -123,9 +123,6 @@ public class DatabaseQuestionAccessor implements IQuestionGetter {
     }
 
     public int count() {
-        Log.d("COUCOU", "COUNT = " + getBiggestIndex());
-        for (Question q : getAll())
-            Log.d("LIST", q.toString());
         return biggestIndex;
     }
 

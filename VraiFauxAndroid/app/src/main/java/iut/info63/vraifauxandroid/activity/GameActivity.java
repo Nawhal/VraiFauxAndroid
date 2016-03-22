@@ -26,13 +26,11 @@ public class GameActivity extends AppCompatActivity {
     private TextView mTvQuestion, mTvResult;
 
     private IGameManager mGameManager;
-    private Question question;
     private DataBaseHelper dbh;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable("game", mGameManager);
-        outState.putSerializable("question", question);
         if(mButtonNextQuestion.getVisibility() == View.VISIBLE) {
             outState.putBoolean("repondu", true);
             outState.putString("stringreponse", mTvResult.getText().toString());
@@ -49,7 +47,6 @@ public class GameActivity extends AppCompatActivity {
 
         try {
             dbh = new DataBaseHelper(this);
-            //test(dbh);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,9 +64,8 @@ public class GameActivity extends AppCompatActivity {
 
         if(savedInstanceState != null) {
             mGameManager = (IGameManager) savedInstanceState.getSerializable("game");
-            question = (Question) savedInstanceState.getSerializable("question");
 
-            mTvQuestion.setText(question.toString());
+            mTvQuestion.setText(mGameManager.getQuestionCourante());
             switch (mGameManager.getCompteurBadAnswer()) {
                 case 1:
                     mIvHeart3.setImageResource(R.drawable.emptyheart);
@@ -178,12 +174,12 @@ public class GameActivity extends AppCompatActivity {
 
     private void displayQuestion() {
         if(mGameManager.getCompteurBadAnswer() < 3) {
-            question = mGameManager.randomQuestion(dbh);
-            mTvQuestion.setText(question.getQuestion());
-            Log.d("TEST", question.getQuestion());
-            if(question.getAnswer() == true)
+            mGameManager.randomQuestion(dbh);
+            mTvQuestion.setText(mGameManager.getQuestionCourante());
+            Log.d("TEST", mGameManager.getQuestionCourante());
+            if(mGameManager.getReponseCourante() == true)
                 Log.d("TEST", "réponse = true");
-            if(question.getAnswer() == false)
+            if(mGameManager.getReponseCourante() == false)
                 Log.d("TEST", "réponse = false");
         }
     }

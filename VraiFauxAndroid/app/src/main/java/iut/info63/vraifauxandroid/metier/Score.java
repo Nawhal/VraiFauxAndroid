@@ -1,8 +1,5 @@
 package iut.info63.vraifauxandroid.metier;
 
-/**
- * Created by Nawhal on 23/02/2016.
- */
 public class Score {
 
     private int rightAnswerNb;
